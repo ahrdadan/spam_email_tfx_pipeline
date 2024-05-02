@@ -1,10 +1,8 @@
-version: "3"
-
 services:
+  # TF Serving
   spam-email-prediction:
-    # TF Serving
     container_name: ml
-    image: <username_docker>/cc-prediction
+    build: .
     restart: always
     ports:
       - "8501:8501"
@@ -12,7 +10,8 @@ services:
   # Prometheus for Monitor
   spam-email-monitoring:
     container_name: prometheus
-    image: <username_docker>/cc-monitoring
+    build:
+      context: monitoring
     restart: always
     ports:
       - "9090:9090"
