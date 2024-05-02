@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  spam-email-prediction:
+    # TF Serving
+    container_name: ml
+    image: <username_docker>/cc-prediction
+    restart: always
+    ports:
+      - "8501:8501"
+
+  # Prometheus for Monitor
+  spam-email-monitoring:
+    container_name: prometheus
+    image: <username_docker>/cc-monitoring
+    restart: always
+    ports:
+      - "9090:9090"
+
+  # grafana for visualize
+  spam-email-visualization:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    ports:
+      - "3000:3000"
